@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>
+    <%= title %>
+  </title>
+  <%include scripts%>
+</head>
+
+<body>
+  <%include header%>
+    <div class="row justify-content-end m-3">
+      <div class="dropdown">
+        <button class="btn btn-outline-primary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Results per page
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="/items/?count=20<%=(search) ? '&search='+ search: '' %>">20</a>
+          <a class="dropdown-item" href="/items/?count=50<%=(search) ? '&search='+ search: '' %>">50</a>
+          <a class="dropdown-item" href="/items/?count=100<%=(search) ? '&search='+ search: '' %>">100</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="btn btn-outline-primary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Order by
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="/items/?filter=artist<%=(search) ? '&search='+search: '' %>">Artist</a>
+          <a class="dropdown-item" href="/items/?filter=title<%=(search) ? '&search='+search: '' %>">Name</a>
+          <a class="dropdown-item" href="/items/?filter=medium<%=(search) ? '&search='+search: '' %>">Genre</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-deck">
+      <% for (var i=0; i<items.length ; i++) { %>
+        <div class="col-lg-2 col-md-4 col-sm-6 mb-3">
+          <div class="card h-100">
+            <div class="wrapper">
+              <img class="card-img-top img-fluid" src=" <%= items[i].thumbnailUrl ? items[i].thumbnailUrl : '../images/thumbmissing.jpg' %> "
+                alt="<%= items[i].name%>">
+            </div>
+            <div class="card-block">
+              <h4 class="card-title">
+                <%= items[i].title %>
+              </h4>
+              <p class="card-text">
+                <%=items[i].medium %>
+              </p>
+              <small class="text-muted">
+                <a href="/items/<%= items[i]._id  %>" class="card-text">Visit Gallery</a>
+              </small>
+            </div>
+            <div class="card-footer">
+              <input type="submit" class="btn btn-primary addtocart" value="Add to Cart" id="<%= items[i]._id %>"></input>
+            </div>
+          </div>
+        </div>
+        <% } %>
+    </div>
+
+
+    </div>
+    <%include footer%>
+      <%include addtocart%>
+</body>
+
+</html>

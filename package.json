@@ -1,0 +1,34 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "test": "mocha"
+  },
+  "dependencies": {
+    "body-parser": "~1.18.2",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "ejs": "^2.5.7",
+    "express": "~4.15.5",
+    "express-session": "^1.15.6",
+    "jquery": "^3.2.1",
+    "mongodb": "^2.2.33",
+    "mongoose": "^4.13.6",
+    "morgan": "~1.9.0",
+    "nodemailer": "^4.4.1",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "serve-favicon": "~2.4.5",
+    "uuid": "^3.1.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-inject": "^4.3.0",
+    "gulp-nodemon": "^2.2.1",
+    "gulp-semistandard": "^1.0.0",
+    "mocha": "^4.0.1",
+    "wiredep": "^4.0.0"
+  }
+}

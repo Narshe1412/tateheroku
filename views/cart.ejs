@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <%include scripts%>
+    <title>
+      <%= title %>
+    </title>
+</head>
+
+<body>
+  <%include header%>
+
+    <div class="container">
+      <table id="cart" class="table table-hover table-condensed">
+        <% 
+          if (cart.length > 0) { %>
+          <thead>
+            <tr>
+              <th style="width:50%">Product</th>
+              <th style="width:10%">Price</th>
+              <th style="width:8%">Quantity</th>
+              <th style="width:22%" class="text-center">Subtotal</th>
+              <th style="width:10%"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <%  var grandTotal = 0;
+                for (var i = 0; i < cart.length; i++) {
+            %>
+              <tr>
+                <td data-th="Product">
+                  <div class="row">
+                    <div class="col-sm-2 hidden-xs">
+                      <img src="<%= cart[i].thumbnailUrl ? cart[i].thumbnailUrl : '../images/thumbmissing.jpg' %>" alt="<%= cart[i].medium%>" class="img-responsive img-fluid"
+                      />
+                    </div>
+                    <div class="col-sm-10">
+                      <h5 class="nomargin">
+                        <a href="/items/<%= cart[i]._id  %>" style="text-decoration:none; color:black">
+                          <%var title = cart[i].title;
+                          if ( title.length > 40) title = cart[i].title.substring(0,40) + '...';
+                          if ( typeof title === 'number' ) title = "<no title>";
+                          %>
+                            <%= title %>
+                        </a>
+                      </h5>
+                      <p>
+                        <%=cart[i].artist%>
+                      </p>
+                    </div>
+                  </div>
+                </td>
+                <td data-th="Price">$
+                  <span class='price-per-unit'>
+                    <%=PRINTPRICE%>
+                  </span>
+                </td>
+                <td data-th="Quantity">
+                  <input type="number" class="form-control text-center quantity-box" value="<%=cart[i].quantity%>" id=<%=cart[i]._id%>>
+                </td>
+                <td data-th="Subtotal" class="text-center subtotal" id=<%=cart[i]._id%>>
+                  <% var subtotal = PRINTPRICE * cart[i].quantity
+                grandTotal += subtotal %>
+                    <%= parseFloat(subtotal).toFixed(2) %>
+                </td>
+                <td class="actions" data-th="">
+                  <button class="btn btn-info btn-sm update-cart" quantity=<%=cart[i].quantity%> id=
+                    <%=cart[i]._id%>>
+                      <i class="fa fa-refresh"></i>
+                  </button>
+                  <button class="btn btn-danger btn-sm remove-from-cart" id="<%=cart[i]._id%>">
+                    <i class="fa fa-trash-o"></i>
+                  </button>
+                </td>
+              </tr>
+              <%}%>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>
+                <a href="/items/" class="btn btn-warning">
+                  <i class="fa fa-angle-left"></i> Continue Shopping</a>
+              </td>
+              <td colspan="2" class="hidden-xs"></td>
+              <td class="hidden-xs text-center">
+                <strong>Total $
+                  <%=parseFloat(grandTotal).toFixed(2)%>
+                </strong>
+              </td>
+              <td>
+                <form action="/checkout" method="POST">
+                  <button class="btn btn-success btn-block checkout">Checkout
+                    <i class="fa fa-angle-right"></i>
+                  </button>
+                </form>
+              </td>
+            </tr>
+          </tfoot>
+          <% } else { %>
+            <thead>
+              <tr>
+                <th style="width:100%">Cart</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-th="Product">
+                  <div class="row">
+                    <div class="col-sm-10">
+                      <p>Your cart is empty</p>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td>
+                  <a href="/items/" class="btn btn-warning">
+                    <i class="fa fa-angle-left"></i> Continue Shopping</a>
+                </td>
+              </tr>
+            </tfoot>
+            <%
+          }
+        %>
+      </table>
+    </div>
+    <script>
+      $('.remove-from-cart').on('click', (event) => {
+        event.preventDefault()
+        $.ajax({
+          url: '/cart/' + event.currentTarget.id,
+          type: 'DELETE',
+          success: function (res) {
+            location.reload()
+          }
+        });
+      })
+      $('.quantity-box').on('change', (event) => {
+        $('#' + event.currentTarget.id + '.update-cart').attr('quantity', event.currentTarget.value);
+        var pricePerUnit = $('.price-per-unit')[0].innerHTML;
+        $('#' + event.currentTarget.id + '.subtotal').text(parseFloat(event.currentTarget.value * pricePerUnit).toFixed(2));
+      })
+      $('.update-cart').on('click', (event) => {
+        event.preventDefault()
+        $.ajax({
+          url: '/cart/' + event.currentTarget.id,
+          type: 'PUT',
+          data: { id: event.currentTarget.id, qty: event.currentTarget.attributes.quantity.value },
+          success: function (res) {
+            location.reload()
+          }
+        });
+      })
+    </script>
+    <%include footer%>
+</body>
+
+</html>

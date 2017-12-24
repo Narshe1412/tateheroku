@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>
+    <%= title %>
+  </title>
+  <%include scripts%>
+</head>
+
+<body>
+  <%include header%>
+    <div class="card">
+      <h3 class="card-header">
+        <%=item.title%>
+      </h3>
+      <div class="card-block">
+
+        <div class="wrapper" style="height: 400px">
+          <img class="card-img-top" src=" <%= item.thumbnailUrl %> " alt="<%= item.name%>">
+        </div>
+        <h4 class="card-title">
+          <%= item.name %>
+        </h4>
+        <p class="card-text">
+          <%= item.medium %>
+        </p>
+        <a href="<%= item.url  %>" class="btn btn-primary">Visit Gallery</a>
+        <input type="submit" class="btn btn-primary addtocart" value="Add to Cart" id="<%= item._id %>"></input>
+        <button onclick="goBack()" class="btn btn-primary">Go Back</button>
+      </div>
+    </div>
+
+    <%include footer%>
+      <%include addtocart%>
+        <script>
+          function goBack() {
+            window.history.back();
+          }
+        </script>
+</body>
+
+</html>

@@ -1,0 +1,13 @@
+<script>
+  $('.addtocart').on('click', (event) => {
+    event.preventDefault()
+    $.ajax({
+      url: '/cart/' + event.currentTarget.id,
+      type: 'PUT',
+      data: { id: event.currentTarget.id },
+      success: function (res) {
+        $('#' + event.currentTarget.id).val('Added to Cart!')
+      }
+    });
+  })
+</script>

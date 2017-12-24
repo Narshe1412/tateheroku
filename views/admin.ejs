@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>
+    <%= title %>
+  </title>
+  <%include scripts%>
+</head>
+
+<body>
+  <%include header%>
+    <h1>
+      Admin Site
+    </h1>
+    <p>Use it to add new items to the database</p>
+    <form action="/admin/add" method="POST">
+      <div class="form-group">
+        <label for="id">Gallery id</label>
+        <input class="form-control" type="text" name="id" alt="id in the gallery" placeholder="1035" required>
+      </div>
+      <div class="form-group">
+        <label for="artist">Artist</label>
+        <input class="form-control" type="text" name="artist" alt="name of the artist" placeholder="Blake, Robert" required>
+      </div>
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input class="form-control" type="text" name="title" alt="title of the piece" placeholder="A Figure Bowing before a Seated Old Man with his Arm Outstretched in Benediction. Verso: Indecipherable Sketch"
+          required>
+      </div>
+      <div class="form-group">
+        <label for="dateText">Date on the inscription</label>
+        <input class="form-control" type="text" name="dateText" alt="date on the inscription" placeholder="date not known" required>
+      </div>
+      <div class="form-group">
+        <label for="medium">Material</label>
+        <input class="form-control" type="text" name="medium" alt="material what's made of" placeholder="Watercolour, ink, chalk and graphite on paper. Verso: graphite on paper"
+          required>
+      </div>
+      <div class="form-group">
+        <label for="year">Year of publication</label>
+        <input class="form-control" type="text" name="year" alt="year of publication" placeholder="1922" required>
+      </div>
+      <div class="form-group">
+        <label for="dimensions">Dimensions</label>
+        <input class="form-control" type="text" name="dimensions" alt="dimensions" placeholder="support: 394 x 419 mm" required>
+      </div>
+      <div class="form-group">
+        <label for="thumbnailUrl">Picture in the gallery</label>
+        <input class="form-control" type="text" name="thumbnailUrl" alt="picture of the piece" placeholder="http://www.tate.org.uk/art/images/work/A/A00/A00001_8.jpg"
+          required>
+      </div>
+      <div class="form-group">
+        <label for="url">Gallery link URL</label>
+        <input class="form-control" type="text" name="url" alt="gallery link" placeholder="http://www.tate.org.uk/art/artworks/blake-a-figure-bowing-before-a-seated-old-man-with-his-arm-outstretched-in-benediction-a00001"
+          required>
+      </div>
+      <div class="form-group">
+        <input class="btn btn-primary" type="submit" value="Send">
+
+      </div>
+    </form>
+    <a href="/" class="btn btn-warning" onlick='history.back()'>Back to safety!</a>
+    <%include footer%>
+</body>
+
+</html>
