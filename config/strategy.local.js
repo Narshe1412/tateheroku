@@ -15,7 +15,12 @@ module.exports = function () {
       var collection = db.collection('users');
       collection.findOne({username: username}, (err, results) => {
         if (err) throw err;
-        bcrypt.compare(password, results.password, (err, res) => {
+        if(results) {
+          pazzword = results.password;
+        } else {
+          pazzword = '';
+        }
+        bcrypt.compare(password, pazzword, (err, res) => {
           if (err) throw err;
           if (res === true) {
             var user = results;
