@@ -5,7 +5,9 @@
   "scripts": {
     "start": "node ./bin/www",
     "test": "mocha",
-    "postinstall": "node -e \"try { require('fs').symlinkSync(require('path').resolve('node_modules/@bower_components'), 'public\\lib', 'junction') } catch (e) { }\""
+    "postinstall": "node -e \"try { require('fs').symlinkSync(require('path').resolve('node_modules/@bower_components'), 'public\\lib', 'junction') } catch (e) { }\"",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "engines": {
     "node": ">= 8.9.3",
@@ -32,7 +34,8 @@
     "@bower_components/font-awesome": "FortAwesome/Font-Awesome#^4.7.0",
     "@bower_components/jquery": "jquery/jquery-dist#>=1.9.1",
     "@bower_components/mocha": "mochajs/mocha#^5.0.3",
-    "@bower_components/tether": "HubSpot/tether#^1.4.0"
+    "@bower_components/tether": "HubSpot/tether#^1.4.0",
+    "snyk": "^1.123.0"
   },
   "devDependencies": {
     "gulp": "^4.0.0",
@@ -41,5 +44,6 @@
     "gulp-semistandard": "^1.0.0",
     "mocha": "^5.0.3",
     "wiredep": "^4.0.0"
-  }
+  },
+  "snyk": true
 }
