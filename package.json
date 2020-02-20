@@ -35,7 +35,7 @@
     "@bower_components/jquery": "jquery/jquery-dist#>=1.9.1",
     "@bower_components/mocha": "mochajs/mocha#^5.0.3",
     "@bower_components/tether": "HubSpot/tether#^1.4.0",
-    "snyk": "^1.258.2"
+    "snyk": "^1.278.2"
   },
   "devDependencies": {
     "gulp": "^4.0.0",
