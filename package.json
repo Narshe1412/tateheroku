@@ -7,7 +7,7 @@
     "test": "mocha",
     "postinstall": "node -e \"try { require('fs').symlinkSync(require('path').resolve('node_modules/@bower_components'), 'public\\lib', 'junction') } catch (e) { }\"",
     "snyk-protect": "snyk protect",
-    "prepublish": "npm run snyk-protect"
+    "prepublish": "yarn run snyk-protect"
   },
   "engines": {
     "node": ">= 8.9.3",
