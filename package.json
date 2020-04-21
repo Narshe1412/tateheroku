@@ -28,7 +28,7 @@
     "nodemailer": "^4.7.0",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
-    "serve-favicon": "~2.4.5",
+    "serve-favicon": "~2.5.0",
     "uuid": "^3.4.0",
     "@bower_components/bootstrap": "twbs/bootstrap#v4.0.0-alpha.6",
     "@bower_components/font-awesome": "FortAwesome/Font-Awesome#^4.7.0",
