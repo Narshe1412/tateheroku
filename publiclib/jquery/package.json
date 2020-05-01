@@ -23,7 +23,9 @@
     "url": "https://github.com/jquery/jquery/issues"
   },
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "snyk": "^1.316.1"
+  },
   "devDependencies": {
     "babel-core": "7.0.0-beta.0",
     "babel-plugin-transform-es2015-for-of": "7.0.0-beta.0",
@@ -73,7 +75,9 @@
     "test": "grunt && grunt test:slow && grunt karma:main",
     "jenkins": "npm run test:browserless",
     "precommit": "grunt lint:newer qunit_fixture",
-    "commitmsg": "node node_modules/commitplease"
+    "commitmsg": "node node_modules/commitplease",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "commitplease": {
     "nohook": true,
@@ -104,5 +108,6 @@
     ],
     "markerPattern": "^((clos|fix|resolv)(e[sd]|ing))|^(refs?)",
     "ticketPattern": "^((Closes|Fixes) ([a-zA-Z]{2,}-)[0-9]+)|^(Refs? [^#])"
-  }
+  },
+  "snyk": true
 }
