@@ -31,7 +31,9 @@
     "uglify": "uglifyjs --compress warnings=false --mangle --comments '/^!/' --output dist/js/bootstrap.min.js dist/js/bootstrap.js",
     "uglify-docs": "uglifyjs --compress warnings=false --mangle --comments '/^!/' --output docs/assets/js/docs.min.js docs/assets/js/vendor/*.js docs/assets/js/src/application.js",
     "update-shrinkwrap": "npm shrinkwrap --dev && shx mv ./npm-shrinkwrap.json ./grunt/npm-shrinkwrap.json",
-    "test": "npm run eslint && grunt test"
+    "test": "npm run eslint && grunt test",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "style": "dist/css/bootstrap.css",
   "sass": "scss/bootstrap.scss",
@@ -46,7 +48,8 @@
   "license": "MIT",
   "dependencies": {
     "jquery": ">=1.9.1",
-    "tether": "^1.4.0"
+    "tether": "^1.4.0",
+    "snyk": "^1.316.1"
   },
   "devDependencies": {
     "autoprefixer": "^6.6.1",
@@ -108,5 +111,6 @@
     "dependencies": {
       "jquery": "3"
     }
-  }
+  },
+  "snyk": true
 }
